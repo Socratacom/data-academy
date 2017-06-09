@@ -1,0 +1,38 @@
+header nav {
+	position:relative;
+	width:100%;
+	.logo, button {
+		position:absolute;
+	}
+}
+
+@media only screen and (min-width : 320px) {
+header nav {
+		height:60px;
+		.logo {
+			padding:0;
+			margin:0;			
+			left:0;
+			top:15px;
+			height:24px;
+			width:214px;
+		}
+		button {
+			right:0;
+			top:12px;
+		}
+	}
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+header nav {
+		height:100px;
+		.logo {
+			left:0;
+			top:15px;
+			height:30px;
+			width:268px;
+		}
+	}
+}

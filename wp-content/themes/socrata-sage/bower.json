@@ -10,7 +10,8 @@
     "bootstrap": "git://github.com/twbs/bootstrap.git#v4.0.0-alpha.6",
     "font-awesome": "^4.7.0",
     "matchHeight": "^0.7.2",
-    "iframe-resizer": "^3.5.14"
+    "iframe-resizer": "^3.5.14",
+    "include-media": "^1.4.9"
   },
   "overrides": {
     "iframe-resizer": {
