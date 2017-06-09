@@ -1,7 +1,12 @@
-<footer>
+<footer class="section-padding">
   <div class="container">
   	<div class="row">
-    	<p>I'm the footer</p>
+  		<div class="col-sm-12">
+  			<ul class="copyright">
+  				<li><a href="https://socrata.com" target="_blank" class="socrata-logo mr-2"></a></li>
+  				<li><span style="font-size:12px;">&copy; <?php echo date("Y");?> Socrata. All rights reserved.</span></li>
+    		</ul>
+    	</div>
     </div>
   </div>
 </footer>

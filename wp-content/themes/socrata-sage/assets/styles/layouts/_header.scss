@@ -1,7 +1,7 @@
 header nav {
 	position:relative;
 	width:100%;
-	.logo, button {
+	.logo, button, .btn {
 		position:absolute;
 	}
 }
@@ -17,7 +17,7 @@ header nav {
 			height:24px;
 			width:214px;
 		}
-		button {
+		button, .btn {
 			right:0;
 			top:12px;
 		}
