@@ -1,6 +1,184 @@
+/// Slightly lighten a color
+/// @access public
+/// @param {Color} $color - color to tint
+/// @param {Number} $percentage - percentage of `$color` in returned color
+/// @return {Color}
+@function tint($color, $percentage) {
+  @return mix(white, $color, $percentage);
+}
+
+/// Slightly darken a color
+/// @access public
+/// @param {Color} $color - color to shade
+/// @param {Number} $percentage - percentage of `$color` in returned color
+/// @return {Color}
+@function shade($color, $percentage) {
+  @return mix(black, $color, $percentage);
+}
+
+@mixin aspect-ratio($width, $height) {
+  position: relative;
+  &:before {
+    display: block;
+    content: "";
+    width: 100%;
+    padding-top: ($height / $width) * 100%;
+  }
+  > .aspect-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+$breakpoints: (
+  phone:320px,
+  tablet:768px,
+  desktop:1024px
+);
+
+// Glyphicons font path
+$icon-font-path:        "../fonts/";
+
 // Grid settings
 $main-sm-columns:       12;
 $sidebar-sm-columns:    4;
 
-// Colors
-$brand-primary:         #27ae60;
+//Base Palette Colors
+$primary: 						#288DC1;
+$primary-alt-1: 				#E28432;
+$primary-alt-2: 				#00A1AF;
+$primary-alt-3: 				#00BE9B;
+$secondary: 					tint(#425363, 40%);
+$success: 						lighten(#218649, 10%);
+$error: 						#CE6565;
+$warning: 						shade(#FABE00, 5%);
+
+//Colors light version
+$primary-light: 				tint($primary, 80%);
+$primary-alt-1-light: 			tint($primary-alt-1, 80%);
+$primary-alt-2-light: 			tint($primary-alt-2, 80%);
+$primary-alt-3-light: 			tint($primary-alt-3, 80%);
+$secondary-light: 				tint($secondary, 80%);
+$success-light: 				tint($success, 80%);
+$error-light: 					tint($error, 80%);
+$warning-light: 				tint($warning, 80%);
+
+//Colors dark version
+$primary-dark: 					shade($primary, 30%);
+$primary-alt-1-dark: 			shade($primary-alt-1, 30%);
+$primary-alt-2-dark: 			shade($primary-alt-2, 30%);
+$primary-alt-3-dark: 			shade($primary-alt-3, 30%);
+$secondary-dark: 				shade($secondary, 30%);
+$success-dark: 					shade($success, 30%);
+$error-dark: 					shade($error, 30%);
+$warning-dark: 					shade($warning, 30%);
+
+//Greys
+$white: 						#FFF;
+$grey: 							#999;
+$black: 						#2C2C2C; //as black as it will ever be at least
+
+//Shades of Grey
+$light-grey-0: 					tint($grey, 10%);
+$light-grey-1: 					tint($grey, 20%);
+$light-grey-2: 					tint($grey, 40%);
+$light-grey-3: 					tint($grey, 60%);
+$light-grey-4: 					tint($grey, 80%);
+$light-grey-5: 					tint($grey, 90%);
+$light-grey-6: 					tint($grey, 93.3%);
+$light-grey-7: 					tint($grey, 95%);
+
+$dark-grey-0: 					shade($grey, 10%);
+$dark-grey-1: 					shade($grey, 20%);
+$dark-grey-2: 					shade($grey, 40%);
+$dark-grey-3: 					shade($grey, 60%);
+
+// Color Vars
+$default-text-color: $dark-grey-2;
+$quiet-text-color: $light-grey-1;
+$light-text-color: $white;
+$light-grey-bg: $light-grey-5;
+
+// Brand Colors
+$brand-primary:         		$primary;
+$brand-success:         		$success;
+$brand-info:         			$secondary;
+$brand-warning:         		$warning;
+$brand-danger:         			$error;
+
+$btn-primary-color:             #fff;
+$btn-primary-bg:                $brand-primary;
+$btn-primary-border:            $btn-primary-bg;
+
+$btn-success-color:             #fff;
+$btn-success-bg:                $brand-success;
+$btn-success-border:            $btn-success-bg;
+
+$btn-info-color:                #fff;
+$btn-info-bg:                   $brand-info;
+$btn-info-border:               $btn-info-bg;
+
+$btn-warning-color:             #fff;
+$btn-warning-bg:                $brand-warning;
+$btn-warning-border:            $btn-warning-bg;
+
+$btn-danger-color:              #fff;
+$btn-danger-bg:                 $brand-danger;
+$btn-danger-border:             $btn-danger-bg;
+
+// Font Weight
+$font-light:					300;
+$font-normal:					400;
+$font-semi-bold:			600;
+$font-bold:						700;
+
+// Slick Carousel 
+$slick-dot-character: "\f111" !default;
+$slick-dot-size: 15px !default;
+$slick-dot-color: $primary !default;
+$slick-dot-color-active: $slick-dot-color !default;
+$slick-opacity-default: 1 !default;
+$slick-opacity-on-hover: 0.75 !default;
+$slick-opacity-not-active: 0.25 !default;
+
+//---------------------//
+// deprecated
+
+// Color swatches
+$turquoise:                 	#3a9b88;
+$green-sea:                 	#318473;
+
+$emerald:                   	#4dac75;
+$nephritis:                 	#429364;
+
+$peter-river:               	#288dc1;
+$belize-hole:               	#45799c;
+
+$amethyst:                  	#936ba3;
+$wisteria:                  	#855998;
+
+$wet-asphalt:               	#3c4855;
+$midnight-blue:             	#333e49;
+
+$sun-flower:                	#c4a83c;
+$orange:                    	#e28432;
+
+$carrot:                    	#bf8049;
+$pumpkin:                   	#a95d2a;
+
+$alizarin:                  	#c5685e;
+$pomegranate:               	#a25048;
+
+$asbestos:                  	#63656A;
+$clouds:                    	lighten($asbestos, 55%);
+$silver:                    	lighten($asbestos, 30%);
+$concrete:                  	lighten($asbestos, 10%);
+
+
+// Grays
+$gray-dark:                     darken($asbestos, 10%);
+$gray-light:                	$silver;
+$inverse:                   	white;
