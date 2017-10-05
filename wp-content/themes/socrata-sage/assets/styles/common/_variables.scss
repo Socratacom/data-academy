@@ -132,7 +132,7 @@ $btn-danger-border:             $btn-danger-bg;
 // Font Weight
 $font-light:					300;
 $font-normal:					400;
-$font-semi-bold:			600;
+$font-semi-bold:			    600;
 $font-bold:						700;
 
 // Slick Carousel 
@@ -144,41 +144,3 @@ $slick-opacity-default: 1 !default;
 $slick-opacity-on-hover: 0.75 !default;
 $slick-opacity-not-active: 0.25 !default;
 
-//---------------------//
-// deprecated
-
-// Color swatches
-$turquoise:                 	#3a9b88;
-$green-sea:                 	#318473;
-
-$emerald:                   	#4dac75;
-$nephritis:                 	#429364;
-
-$peter-river:               	#288dc1;
-$belize-hole:               	#45799c;
-
-$amethyst:                  	#936ba3;
-$wisteria:                  	#855998;
-
-$wet-asphalt:               	#3c4855;
-$midnight-blue:             	#333e49;
-
-$sun-flower:                	#c4a83c;
-$orange:                    	#e28432;
-
-$carrot:                    	#bf8049;
-$pumpkin:                   	#a95d2a;
-
-$alizarin:                  	#c5685e;
-$pomegranate:               	#a25048;
-
-$asbestos:                  	#63656A;
-$clouds:                    	lighten($asbestos, 55%);
-$silver:                    	lighten($asbestos, 30%);
-$concrete:                  	lighten($asbestos, 10%);
-
-
-// Grays
-$gray-dark:                     darken($asbestos, 10%);
-$gray-light:                	$silver;
-$inverse:                   	white;
