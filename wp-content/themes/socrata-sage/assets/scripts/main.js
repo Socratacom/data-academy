@@ -70,7 +70,7 @@
             $("html, body").scrollTop(scroll);
             return;
           }
-        });
+        });    
 
       },
       finalize: function() {

@@ -45,3 +45,13 @@ function addthis_sharing ($atts, $content = null) {
   return $content;
 }
 add_shortcode('addthis', __NAMESPACE__ . '\\addthis_sharing');
+
+/**
+ * Remove Posts and Comments from menu
+ */
+function post_remove ()
+{ 
+   remove_menu_page('edit.php');
+   remove_menu_page('edit-comments.php');
+}
+add_action('admin_menu', __NAMESPACE__ . '\\post_remove');

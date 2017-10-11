@@ -15,3 +15,110 @@
     }
 }
 
+@include media-breakpoint-up(xs) {
+    .overlay {
+        height: 0%;
+        width: 100%;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: rgba($primary, 1);
+        overflow-y: hidden;
+        transition: 0.5s;
+    }
+
+    .overlay-content {
+        position: relative;
+        top: 25%;
+        width: 100%;
+        text-align: center;
+        margin-top: 30px;
+    }
+
+    .overlay a {
+        padding: 8px;
+        text-decoration: none;
+        font-size: 36px;
+        color: $white;
+        display: block;
+        transition: 0.3s;
+    }
+
+    .overlay a:hover, .overlay a:focus {
+        color: $primary-light;
+    }
+
+    .overlay .closebtn {
+        position: absolute;
+        top: 20px;
+        right: 45px;
+        font-size: 60px;
+    }
+    .banner {
+        height:80px;
+        .branding {
+            height: 80px;
+            position: relative;
+            .logo {
+                height:20px;
+                width:195px;
+                position: absolute;
+                top:30px;
+                left:15px;
+            }
+        }
+        .menu {
+            position: absolute;
+            right:15px;
+            top:23px;
+            display: inline-block;
+            .icon-menu {
+                font-size: 32px;
+                display: block;
+            }
+            .text {
+                display: none;
+            }
+        }
+
+    }
+}
+
+@include media-breakpoint-up(md) {
+    .banner {
+        height:150px;
+        .branding {
+            height: 150px;
+            .logo {
+                height:32px;
+                width:310px;
+                top:60px;
+            }
+        }
+        .menu {
+            right:15px;
+            top:40px;
+            .icon-menu {
+                font-size: 42px;
+                cursor: pointer;
+            }
+            .text {
+                font-size: 11px;
+                display: block;
+                text-transform: uppercase;
+                text-align: center;
+            }
+        }
+    }
+}
+
+@media screen and (max-height: 450px) {
+  .overlay {overflow-y: auto;}
+  .overlay a {font-size: 20px}
+  .overlay .closebtn {
+    font-size: 40px;
+    top: 15px;
+    right: 35px;
+  }
+}
