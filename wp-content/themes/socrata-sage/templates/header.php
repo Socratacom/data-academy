@@ -24,13 +24,13 @@
     </nav>-->
 
 <nav id="siteNav" class="overlay">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <div class="overlay-content">
-    <a href="/online-learning">Online Learning</a>
-    <a href="/in-person-learning">In-person Learning</a>
-    <a href="/about-socrata-data-academy">About Socrata Data Academy</a>
-    <a href="/contact">Learn More</a>
-  </div>
+  <a href="javascript:void(0)" class="icon-close" onclick="closeNav()"></a>
+  <ul class="overlay-content">
+    <li class="nav-item"><a href="/online-learning">Online Learning</a></li>
+    <li class="nav-item"><a href="/in-person-learning">In-person Learning</a></li>
+    <li class="nav-item"><a href="/data-academy-as-a-service">Data Academy as a Service</a></li>
+    <li class="nav-item"><a href="/contact">Contact Us</a></li>
+  </ul>
 </nav>
 <header class="banner" role="banner">
   <div class="container branding">

@@ -26,34 +26,38 @@
         background-color: rgba($primary, 1);
         overflow-y: hidden;
         transition: 0.5s;
-    }
-
-    .overlay-content {
-        position: relative;
-        top: 25%;
-        width: 100%;
-        text-align: center;
-        margin-top: 30px;
-    }
-
-    .overlay a {
-        padding: 8px;
-        text-decoration: none;
-        font-size: 36px;
-        color: $white;
-        display: block;
-        transition: 0.3s;
-    }
-
-    .overlay a:hover, .overlay a:focus {
-        color: $primary-light;
-    }
-
-    .overlay .closebtn {
-        position: absolute;
-        top: 20px;
-        right: 45px;
-        font-size: 60px;
+        .overlay-content {
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            list-style-type: none;
+            margin:0;
+            padding:0;
+        }
+        .nav-item {
+            display: block;
+            text-align: center;
+            padding:10px 0;
+            a {
+                transition: 0.3s;
+                text-decoration: none;
+                font-size: 24px;
+                color: $white;
+                font-weight: $font-normal;
+            }
+        }
+        .nav-item a:hover, .nav-item a:focus {
+            color: $primary-dark;
+        }
+        .icon-close {
+            position: absolute;
+            top: 23px;
+            right: 15px;
+            font-size: 32px;
+            z-index: 100;
+            color:$white;
+        }
     }
     .banner {
         height:80px;
@@ -86,6 +90,19 @@
 }
 
 @include media-breakpoint-up(md) {
+    .overlay {
+        .nav-item {            
+            padding:20px 0;
+            a {
+                font-size: 36px;
+            }
+        }
+        .icon-close {
+            top: 40px;
+            right: 30px;
+            font-size: 60px;
+        }
+    }
     .banner {
         height:150px;
         .branding {
