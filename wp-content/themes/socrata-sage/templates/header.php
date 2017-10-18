@@ -6,6 +6,44 @@
     <li class="nav-item"><a href="/team-workshops">Team Workshops</a></li>
     <li class="nav-item"><a href="/contact">Contact Us</a></li>
   </ul>
+  <!--<div class="overlay-content">
+	  <div class="container">
+	  	<div class="row">
+	  		<div class="col-sm-6 col-md-3" style="text-align: center;">
+	  			<div class="nav-item">
+	  				<div class="nav-content">
+			  			<span class="icon-menu" style="font-size:50px;"></span>
+			  			Online Learning
+			  		</div>
+	  			</div>
+	  		</div>
+	  		<div class="col-sm-6 col-md-3 text-center">
+	  			<div class="nav-item">
+	  				<div class="nav-content">
+			  			<span class="icon-menu" style="font-size:50px;"></span>
+			  			Online Learning
+			  		</div>
+	  			</div>
+	  		</div>
+	  		<div class="col-sm-6 col-md-3 text-center">
+	  			<div class="nav-item">
+	  				<div class="nav-content">
+			  			<span class="icon-menu" style="font-size:50px;"></span>
+			  			Online Learning
+			  		</div>
+	  			</div>
+	  		</div>
+	  		<div class="col-sm-6 col-md-3 text-center">
+	  			<div class="nav-item">
+	  				<div class="nav-content">
+			  			<span class="icon-menu" style="font-size:50px;"></span>
+			  			Online Learning
+			  		</div>
+	  			</div>
+	  		</div>
+	  	</div>
+	  </div>
+	</div>-->
 </nav>
 <header class="banner" role="banner">
   <div class="container branding">
