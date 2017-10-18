@@ -27,7 +27,8 @@ wp-content/*
 wp-content/plugins/*
 # !wp-content/plugins/my-single-file-plugin.php
 !wp-content/plugins/socrata-quotes/
-!wp-content/plugins/socrata-tour/
+!wp-content/plugins/in-person-learning/
+!wp-content/plugins/online-learning/
 
 # Ignore everything in the "themes" directory, except the themes you specify
 wp-content/themes/*
