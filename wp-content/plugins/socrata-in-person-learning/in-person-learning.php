@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Socrata In-person Learning
+Plugin Name: Socrata In-person Learning Schedule
 Plugin URI: http://socrata.com/
 Description: This plugin manages In-person Learning schedule.
 Version: 1.0
@@ -9,13 +9,13 @@ Author URI: http://socrata.com/
 License: GPLv2
 */
 
-add_action( 'init', 'create_socrata_in_person_learning' );
-function create_socrata_in_person_learning() {
-	register_post_type( 'socrata_in_person_learning',
+add_action( 'init', 'create_socrata_ipl_schedule' );
+function create_socrata_ipl_schedule() {
+	register_post_type( 'socrata_ipl_schedule',
 	array(
 		'labels' => array(
-			'name' => 'in_person_learning',
-			'singular_name' => 'in_person_learning',
+			'name' => 'IPL Schedule',
+			'singular_name' => 'ipl schedule',
 			'add_new' => 'Add New',
 			'add_new_item' => 'Add New',
 			'edit' => 'Edit',
@@ -33,130 +33,149 @@ function create_socrata_in_person_learning() {
 		'taxonomies' => array( '' ),
 		'menu_icon' => '',
 		'has_archive' => false,
-		'rewrite' => array('with_front' => false, 'slug' => 'in_person_learning')
+		'rewrite' => array('with_front' => false, 'slug' => 'ipl_schedule')
 		)
 	);
 }
 
 // MENU ICON
 //Using Dashicon Font https://developer.wordpress.org/resource/dashicons
-add_action( 'admin_head', 'add_socrata_in_person_learning_icon' );
-function add_socrata_in_person_learning_icon() { ?>
+add_action( 'admin_head', 'add_socrata_ipl_schedule_icon' );
+function add_socrata_ipl_schedule_icon() { ?>
   <style>
-	#adminmenu .menu-icon-socrata_in_person_learning div.wp-menu-image:before {
-	  content: '\f205';
+	#adminmenu .menu-icon-socrata_ipl_schedule div.wp-menu-image:before {
+	  content: '\f338';
 	}
   </style>
   <?php
 }
 
 // METABOXES
-add_filter( 'rwmb_meta_boxes', 'socrata_in_person_learning_register_meta_boxes' );
-function socrata_in_person_learning_register_meta_boxes( $meta_boxes ) {
-	$prefix = 'in_person_learning_';
+add_filter( 'rwmb_meta_boxes', 'socrata_ipl_schedule_register_meta_boxes' );
+function socrata_ipl_schedule_register_meta_boxes( $meta_boxes ) {
+	$prefix = 'ipl_schedule_';
 	$meta_boxes[] = array(
-		'title'         => 'Author Meta',   
-		'post_types'    => 'socrata_in_person_learning',
+		'title'         => 'Schedule Dates',   
+		'post_types'    => 'socrata_ipl_schedule',
 		'context'       => 'normal',
 		'priority'      => 'high',
+		'validation' => array(
+      'rules'    => array(
+        "{$prefix}startdate" => array(
+            'required'  => true,
+        ),
+        "{$prefix}enddate" => array(
+            'required'  => true,
+        ),
+      ),
+    ),
 		'fields' => array(
-			// TEXT
+			// DATE
 			array(
-				'name'  => esc_html__( 'Job Title', 'in_person_learning_' ),
-				'id'    => "{$prefix}job_title",
-				'type'  => 'text',
-				'clone' => false,
-			),
-			// TEXT
+				'name'       => esc_html__( 'Start Date', 'ipl_schedule_' ),
+				'id'         => "{$prefix}startdate",
+				'type'       => 'date',				
+        'timestamp'   => true, 
+				'js_options' => array(					
+          'numberOfMonths'  => 2,
+          'showButtonPanel' => true,
+				),
+			),			
+			// DATE
 			array(
-				'name'  => esc_html__( 'Organization', 'in_person_learning_' ),
-				'id'    => "{$prefix}organization",
-				'type'  => 'text',
-				'clone' => false,
-			),
-			// IMAGE ADVANCED (WP 3.5+)
+				'name'       => esc_html__( 'End Date', 'ipl_schedule_' ),
+				'id'         => "{$prefix}enddate",
+				'type'       => 'date',				
+        'timestamp'   => true, 
+				'js_options' => array(					
+          'numberOfMonths'  => 2,
+          'showButtonPanel' => true,
+				),
+			),      
+      // TEXT
+      array(
+        'name'  => __( 'Custom Date', 'ipl_schedule_' ),
+        'id'    => "{$prefix}custom_date",
+        'desc' => __( 'Example: January', 'ipl_schedule_' ),
+        'type'  => 'text',
+        'clone' => false,
+      ),
+		)
+	);
+
+	$meta_boxes[] = array(
+    'title'  => __( 'Schedule Meta' ),
+    'post_types' => 'socrata_ipl_schedule',
+    'context'    => 'normal',
+    'priority'   => 'high',
+    'fields' => array(      
+      // TEXT
+      array(
+        'name'  => __( 'Region', 'ipl_schedule_' ),
+        'id'    => "{$prefix}region",
+        'desc' => __( 'Example: South West', 'ipl_schedule_' ),
+        'type'  => 'text',
+        'clone' => false,
+      ),
+      // URL
 			array(
-				'name'              => __( 'Headshot', 'in_person_learning_' ),
-				'id'                => "{$prefix}headshot",
-				'desc'              => __( 'Minimum size 300x300 pixels.', 'in_person_learning_' ),
-				'type'              => 'image_advanced',
-				'max_file_uploads'  => 1,
+				'name' => esc_html__( 'Eventbrite URL', 'ipl_schedule_' ),
+				'id'   => "{$prefix}eventbrite_url",
+				'type' => 'url',
 			),
-			// WYSIWYG/RICH TEXT EDITOR
-			array(
-				'name'    => esc_html__( 'Quote', 'in_person_learning_' ),
-				'id'      => "{$prefix}quote",
-				'type'    => 'wysiwyg',
-				'raw'     => false,
-				'options' => array(
-				'textarea_rows' => 4,
-				'teeny'         => false,
-				'media_buttons' => false,
-			),
-		),
-	),
-);
+    )
+  );
 
   return $meta_boxes;
 }
 
-// Shortcode [in-person-schedule solution="SOLUTION SLUG" segment="SEGMENT SLUG" product="PRODUCT SLUG"]
-function socrata_in_person_schedule ( $atts, $content = null ) {
-	extract ( shortcode_atts ( array (
-		'category' => '',
-	), $atts ) );
-	ob_start();
-	?>
-	
-	<div id="in_person_learning" class="carousel">
-		<div class="container">
-			<div class="customer-in_person_learning">
-				<?php
-				$args = array(
-					'post_type' => 'socrata_in_person_learning',  
-					'socrata_in_person_learning_cat' => $category,
-					'posts_per_page' => 100,
-					'orderby' => 'date',
-					'order'   => 'asc',
-				);
-				$myquery = new WP_Query($args);
-				// The Loop
-				while ( $myquery->have_posts() ) { $myquery->the_post(); 
-					$headshot = rwmb_meta( 'in_person_learning_headshot', 'size=post-thumbnail' );
-					$quote = rwmb_meta( 'in_person_learning_quote' );
-					$job_title = rwmb_meta( 'in_person_learning_job_title' );
-					$organization = rwmb_meta( 'in_person_learning_organization' );
-				?>
+// Shortcode [ipl-schedule]
+function socrata_ipl_schedule ( $atts, $content = null ) {
+  ob_start();
+  ?>
 
-						<div class="quote match-height p-3">							
-							<?php echo $quote;?>
-							<div class="author">
-								<?php if ( !empty ( $headshot ) ) {  
-									foreach ( $headshot as $image ) { ?><img src="<?php echo $image['url']; ?>" class="headshot"> <?php } 
-								}
-								else { ?> 
-									<img src="/wp-content/uploads/no-profile-image.jpg" class="headshot">
-								<?php }
-								?>
-								<div class="author-meta"><span class="font-semi-bold"><?php the_title(); ?></span><?php if ( !empty ( $job_title ) ) { ?><br><?php echo $job_title;?><?php if ( !empty ( $organization ) ) { ?>, <?php echo $organization;?> <?php } ?> <?php } ?>
-								</div>
-							</div>
-						</div>
+	<?php
+		$today = strtotime('today UTC');
+		$args = array(
+			'post_type' => 'socrata_ipl_schedule',
+			'post_status' => 'publish',
+			'ignore_sticky_posts' => true,
+			'meta_key' => 'ipl_schedule_startdate',
+			'orderby' => 'meta_value_num',
+			'order' => 'asc',
+			'posts_per_page' => 100,
+			'meta_query' => array(
+				'relation' => 'AND',
+				array(
+				'key' => 'ipl_schedule_enddate',
+				'value' => $today,
+				'compare' => '>='
+				)
+			)
+		);
+		$myquery = new WP_Query($args);
 
-				<?php
-				}
-				wp_reset_postdata();
-				?>
+		// The Loop
+		while ( $myquery->have_posts() ) { $myquery->the_post(); 
+		$title = rwmb_meta( 'leadership_title' );
+		$twitter = rwmb_meta( 'leadership_twitter' );
+		$linkedin = rwmb_meta( 'leadership_linkedin' );
+		$headshot = rwmb_meta( 'leadership_headshot', 'size=medium' );
+		$bio = rwmb_meta( 'leadership_wysiwyg' );
+		?>
 
-			</div>
+		<div>
+<?php the_title(); ?>
 		</div>
-	</div>
 
+		<?php
+		}
+		wp_reset_postdata();
+	?>
 
-
-<?php
-$content = ob_get_contents();
-ob_end_clean();
-return $content;
+	<?php
+	$content = ob_get_contents();
+	ob_end_clean();
+	return $content;
 }
-add_shortcode( 'in-person-schedule', 'socrata_in_person_schedule' );
+add_shortcode( 'ipl-schedule', 'socrata_ipl_schedule' );

@@ -12,7 +12,8 @@
     "matchHeight": "^0.7.2",
     "iframe-resizer": "^3.5.14",
     "include-media": "^1.4.9",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "material-design-color-palette": "^1.1.0"
   },
   "overrides": {
     "iframe-resizer": {

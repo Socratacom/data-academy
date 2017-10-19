@@ -14,7 +14,7 @@ function create_socrata_quotes() {
 	register_post_type( 'socrata_quotes',
 	array(
 		'labels' => array(
-			'name' => 'quotes',
+			'name' => 'Quotes',
 			'singular_name' => 'quotes',
 			'add_new' => 'Add New',
 			'add_new_item' => 'Add New',
@@ -220,4 +220,4 @@ $content = ob_get_contents();
 ob_end_clean();
 return $content;
 }
-add_shortcode( 'quote_slider', 'socrata_quote_slider' );
+add_shortcode( 'quote-slider', 'socrata_quote_slider' );
