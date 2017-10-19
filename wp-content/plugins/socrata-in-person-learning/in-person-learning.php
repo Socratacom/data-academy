@@ -132,48 +132,67 @@ function socrata_ipl_schedule_register_meta_boxes( $meta_boxes ) {
 // Shortcode [ipl-schedule]
 function socrata_ipl_schedule ( $atts, $content = null ) {
   ob_start();
-  ?>
 
-	<?php
-		$today = strtotime('today UTC');
-		$args = array(
-			'post_type' => 'socrata_ipl_schedule',
-			'post_status' => 'publish',
-			'ignore_sticky_posts' => true,
-			'meta_key' => 'ipl_schedule_startdate',
-			'orderby' => 'meta_value_num',
-			'order' => 'asc',
-			'posts_per_page' => 100,
-			'meta_query' => array(
-				'relation' => 'AND',
-				array(
-				'key' => 'ipl_schedule_enddate',
-				'value' => $today,
-				'compare' => '>='
-				)
+	$today = strtotime('today UTC');
+	$args = array(
+		'post_type' => 'socrata_ipl_schedule',
+		'post_status' => 'publish',
+		'ignore_sticky_posts' => true,
+		'meta_key' => 'ipl_schedule_startdate',
+		'orderby' => 'meta_value_num',
+		'order' => 'asc',
+		'posts_per_page' => 100,
+		'meta_query' => array(
+			'relation' => 'AND',
+			array(
+			'key' => 'ipl_schedule_enddate',
+			'value' => $today,
+			'compare' => '>='
 			)
-		);
-		$myquery = new WP_Query($args);
+		)
+	);
+	$myquery = new WP_Query($args);
 
-		// The Loop
-		while ( $myquery->have_posts() ) { $myquery->the_post(); 
-		$title = rwmb_meta( 'leadership_title' );
-		$twitter = rwmb_meta( 'leadership_twitter' );
-		$linkedin = rwmb_meta( 'leadership_linkedin' );
-		$headshot = rwmb_meta( 'leadership_headshot', 'size=medium' );
-		$bio = rwmb_meta( 'leadership_wysiwyg' );
+	// The Loop
+	if ( $myquery->have_posts() ) {
+		echo '<table class="table"><tbody>';
+		while ( $myquery->have_posts() ) { $myquery->the_post();
+		$custom_date = rwmb_meta( 'ipl_schedule_custom_date' );
+		$start_date = rwmb_meta( 'ipl_schedule_startdate' );
+		$end_date = rwmb_meta( 'ipl_schedule_enddate' );
+		$region = rwmb_meta( 'ipl_schedule_region' );
+		$url = rwmb_meta( 'ipl_schedule_eventbrite_url' );
 		?>
 
-		<div>
-<?php the_title(); ?>
-		</div>
+		<tr>
+			<td class="align-middle">
+				<?php if ( !empty ( $url ) ) { ?>
+					<h4 class="mb-0 font-normal"><a href="<?php echo $ull;?>" target="_blank"><?php the_title(); ?><a></h4>
+					<div class="mdc-text-blue-grey-400" style="font-size:14px;">
+						<?php if ( !empty ( $custom_date ) ) { ?><?php echo $custom_date;?><?php } else { ?><?php echo date('M j', $start_date);?> - <?php echo date('M j', $end_date);?><?php } ?><?php if ( !empty ( $region ) ) echo ", $region ";?>						
+					</div>
+				<?php } else { ?>
+					<h4 class="mb-0 font-normal"><?php the_title(); ?></h4>
+					<div class="mdc-text-blue-grey-400" style="font-size:14px;">
+						<?php if ( !empty ( $custom_date ) ) { ?><?php echo $custom_date;?><?php } else { ?><?php echo date('M j', $start_date);?> - <?php echo date('M j', $end_date);?><?php } ?><?php if ( !empty ( $region ) ) echo ", $region ";?>						
+					</div>
+				<?php } ?> 
+			</td>
+			<td class="align-middle text-right d-none d-sm-block"><?php if ( !empty ($url) ) { ?><a href="<?php echo $url;?>" target="_blank" class="btn btn-primary">Learn More</a> <?php } else { ?><span>Coming Soon</span><?php } ?></td>
+		</tr>
 
 		<?php
-		}
-		wp_reset_postdata();
-	?>
 
+		}
+		echo '</table></tbody>';
+		wp_reset_postdata();
+	} else { ?>
+		<div class="alert alert-primary" role="alert">
+			There are no scheduled events at this time.
+		</div>
 	<?php
+	}
+
 	$content = ob_get_contents();
 	ob_end_clean();
 	return $content;

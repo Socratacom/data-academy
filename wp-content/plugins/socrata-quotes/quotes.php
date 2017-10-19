@@ -124,7 +124,7 @@ function socrata_quotes_register_meta_boxes( $meta_boxes ) {
   return $meta_boxes;
 }
 
-// Shortcode [logo-slider-content solution="SOLUTION SLUG" segment="SEGMENT SLUG" product="PRODUCT SLUG"]
+// Shortcode [quote-slider category="CATEGORY SLUG"]
 function socrata_quote_slider ( $atts, $content = null ) {
 	extract ( shortcode_atts ( array (
 		'category' => '',
@@ -152,7 +152,7 @@ function socrata_quote_slider ( $atts, $content = null ) {
 					$organization = rwmb_meta( 'quotes_organization' );
 				?>
 
-						<div class="quote match-height p-3">							
+						<div class="quote match-height p-3 slick-slide">							
 							<?php echo $quote;?>
 							<div class="author">
 								<?php if ( !empty ( $headshot ) ) {  

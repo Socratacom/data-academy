@@ -71,8 +71,8 @@ function socrata_ol_courses_register_meta_boxes( $meta_boxes ) {
 			),			
 			// URL
 			array(
-				'name' => esc_html__( 'Eventbrite URL', 'ol_courses_' ),
-				'id'   => "{$prefix}eventbrite_url",
+				'name' => esc_html__( 'Course URL', 'ol_courses_' ),
+				'id'   => "{$prefix}course_url",
 				'type' => 'url',
 			),
 		)

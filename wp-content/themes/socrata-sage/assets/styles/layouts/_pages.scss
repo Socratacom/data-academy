@@ -25,7 +25,10 @@
 		}
 	}
 
-	/* Slider */
+	/* Slider */	
+	.slick-slide {
+		display:none;
+	}
 	.slick-slider	{
 		position: relative;
 		display: block;
@@ -110,9 +113,6 @@
 	}
 	.slick-arrow.slick-hidden {
 		display: none;
-	}
-	.slide {
-		display:none;
 	}
 	.slick-dots {
 		position: absolute;
