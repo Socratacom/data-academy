@@ -13,3 +13,76 @@
   @extend .btn;
   @extend .btn-secondary;
 }
+
+// Gravity Form Styles
+.gform_wrapper ul {
+  @extend .list-unstyled;
+}
+.gform_wrapper li {
+  @extend .form-group;
+}
+.gform_wrapper form {
+  margin-bottom: 0;
+}
+.gform_wrapper .gfield_required {
+  padding-left: 1px;
+  color: $mdc-red-500;
+}
+.ginput_container input,
+.ginput_container select,
+.ginput_container textarea {
+	@extend .form-control;
+}
+.ginput_container input {
+	border-radius:1px;
+}
+.ginput_container textarea {
+  height: auto;
+}
+.gform_button {
+	@extend .btn;
+	@extend .btn-primary;
+}
+.gform_wrapper .gfield_error {
+	width:100% !important;
+  .gfield_label {
+    color: $mdc-red-500;
+  }
+  input,
+  select,
+  textarea {
+    border-color: $mdc-red-500 !important;
+    background-color: $mdc-red-100;
+    color: $mdc-red-500;
+  }
+}
+.validation_error {
+	@extend .alert;
+	@extend .alert-warning;
+	text-align:left !important;
+  border-radius:0 !important;
+  border:$mdc-amber-500 solid 1px !important;
+  padding:15px !important;
+}
+
+#gforms_confirmation_message {
+	@extend .alert;
+	@extend .alert-success;
+}
+.gform_wrapper ul.gform_fields li.gfield {
+    padding-right: 0px;
+}
+.form-dark {
+	.gform_wrapper .gfield_label {
+		color:$mdc-white-darker;
+		font-weight:$font-normal;
+		font-size:14px;
+	}
+	.gform_wrapper li.gfield.gfield_error, .gform_wrapper li.gfield.gfield_error.gfield_contains_required.gfield_creditcard_warning {
+		background-color:none;
+		border:none;
+	}
+	.gform_wrapper.gform_validation_error .gform_body ul li.gfield.gfield_error:not(.gf_left_half):not(.gf_right_half) {
+	    max-width: calc(100% - 0px)!important;
+	}
+}

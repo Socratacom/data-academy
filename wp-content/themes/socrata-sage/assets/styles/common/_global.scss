@@ -101,6 +101,26 @@ html, body, [canvas=container], [off-canvas] {
 	transform: translateY(-50%);
 }
 
+/* Check Mark List */
+ul.checkmark-list {
+	list-style-type: none;
+	margin-top:-10px;
+	padding:0;
+	li {
+		padding:5px 10px 5px 32px;
+		position: relative;
+	}
+	li:before {
+		font-family: icomoon;
+		content:"\e943"; 
+		position: absolute;
+		top:4px;
+		left:1px;
+		color:$mdc-green-500;
+		font-size: 20px;
+	}
+}
+
 @include media-breakpoint-up(xs) {
     h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     color: $black;
@@ -153,6 +173,12 @@ html, body, [canvas=container], [off-canvas] {
     }
     ul, ol {
         padding-left:20px;
+    }
+    li {
+    	margin-bottom:1em;
+    }
+    li ul li {
+    	margin-bottom:.5em;
     }
     a {
         color:$primary;
