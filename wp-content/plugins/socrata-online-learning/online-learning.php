@@ -80,3 +80,60 @@ function socrata_ol_courses_register_meta_boxes( $meta_boxes ) {
 
   return $meta_boxes;
 }
+
+// Shortcode [ol-courses]
+function socrata_ol_courses ( $atts, $content = null ) {
+  ob_start();
+
+	$args = array(
+		'post_type' => 'socrata_ol_courses',
+		'post_status' => 'publish',
+		'ignore_sticky_posts' => true,
+		'orderby' => 'name',
+		'order' => 'asc',
+		'posts_per_page' => 100,
+	);
+	$myquery = new WP_Query($args);
+
+	// The Loop
+	if ( $myquery->have_posts() ) {
+		echo '<div class="custom-table">';
+		while ( $myquery->have_posts() ) { $myquery->the_post();
+		$description = rwmb_meta( 'ol_courses_description' );
+		$url = rwmb_meta( 'ol_courses_course_url' );
+		?>
+
+		<div class="row">
+			<div class="col-sm-9 match-height">
+				<?php if ( !empty ( $url ) ) { ?>
+					<h4 class="mb-1 font-normal"><a href="<?php echo $url;?>" target="_blank"><?php the_title(); ?></a></h4>
+					<?php if ( !empty ( $description ) ) echo '<p class="mb-3 mb-sm-0 font-normal mdc-text-blue-grey-400" style="font-size:14px;">' . $description . '</p>';?>
+				<?php } else { ?>
+					<h4 class="mb-1 font-normal"><?php the_title(); ?></h4>					
+					<?php if ( !empty ( $description ) ) echo '<p class="mb-3 mb-sm-0 font-normal mdc-text-blue-grey-400" style="font-size:14px;">' . $description . '</p>';?>
+				<?php } ?> 
+			</div>
+			<div class="col-sm-3 match-height text-left text-sm-right">
+				<div class="vertical-align">
+					<?php if ( !empty ($url) ) { ?><a href="<?php echo $url;?>" target="_blank" class="btn btn-primary">Register</a><?php } else { ?><span class="mdc-text-green">Coming Soon</span><?php }; ?>
+				</div>
+			</div>
+		</div>
+
+		<?php
+
+		}
+		echo '</div>';
+		wp_reset_postdata();
+	} else { ?>
+		<div class="alert alert-primary" role="alert">
+			There are no courses at this time.
+		</div>
+	<?php
+	}
+
+	$content = ob_get_contents();
+	ob_end_clean();
+	return $content;
+}
+add_shortcode( 'ol-courses', 'socrata_ol_courses' );

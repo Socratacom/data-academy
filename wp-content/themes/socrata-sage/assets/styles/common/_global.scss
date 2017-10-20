@@ -443,28 +443,11 @@ html, body, [canvas=container], [off-canvas] {
 	font-size:200px;
 }
 
-.img-background-fixed {
-		background-size:cover;
-		background-repeat:no-repeat;
-		background-position:center center;	
-		position: relative;
-		@include media(">desktop") {
-			background-attachment: fixed;	
-		}
-	}
-	.customer-story {
-		height:100vh;
-		position: relative;
-		filter: contrast(1.1) saturate(1.9) grayscale(0.3);
-		background-color:$light-grey-2;
-		background-blend-mode:multiply;
-		.text {
-			position: absolute;
-			bottom:80px;
-			left:0;
-			width:100%;
-		}
-	}
+.vertical-align {
+	position: relative; 
+	top: 50%; 
+	transform: translateY(-50%);
+}
 
 @include media-breakpoint-up(xs) {
     h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
@@ -669,7 +652,7 @@ html, body, [canvas=container], [off-canvas] {
     }
 }
 /* Small Devices, Tablets */
-@media only screen and (min-width : 768px) {
+@include media-breakpoint-up(sm) {
     h1 {
         font-size: 40px;
     }
@@ -700,7 +683,7 @@ html, body, [canvas=container], [off-canvas] {
 }
 
 /* Large Devices, Wide Screens */
-@media only screen and (min-width : 1200px) {
+@include media-breakpoint-up(lg) {
     h1 {
         font-size: 50px;
     }

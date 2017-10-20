@@ -26,9 +26,6 @@
 	}
 
 	/* Slider */	
-	.slick-slide {
-		display:none;
-	}
 	.slick-slider	{
 		position: relative;
 		display: block;
@@ -175,6 +172,19 @@
 	}
 	.carousel .slick-arrow {
 		display:none !important;
+	}
+	.custom-table {
+		.row {
+			padding:20px 0;
+			border-bottom:$mdc-blue-grey-100 solid 1px;
+			transition: all 0.3s ease 0s;
+		}
+		.row:last-child {
+			border:none;
+		}
+		.row:hover {
+			box-shadow: 0 4px 30px $mdc-blue-grey-100;
+		}
 	}
 }
 

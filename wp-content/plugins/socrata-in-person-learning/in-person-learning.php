@@ -155,7 +155,7 @@ function socrata_ipl_schedule ( $atts, $content = null ) {
 
 	// The Loop
 	if ( $myquery->have_posts() ) {
-		echo '<table class="table"><tbody>';
+		echo '<div class="custom-table">';
 		while ( $myquery->have_posts() ) { $myquery->the_post();
 		$custom_date = rwmb_meta( 'ipl_schedule_custom_date' );
 		$start_date = rwmb_meta( 'ipl_schedule_startdate' );
@@ -164,27 +164,31 @@ function socrata_ipl_schedule ( $atts, $content = null ) {
 		$url = rwmb_meta( 'ipl_schedule_eventbrite_url' );
 		?>
 
-		<tr>
-			<td class="align-middle">
+		<div class="row">
+			<div class="col-sm-9 match-height">
 				<?php if ( !empty ( $url ) ) { ?>
-					<h4 class="mb-0 font-normal"><a href="<?php echo $ull;?>" target="_blank"><?php the_title(); ?><a></h4>
-					<div class="mdc-text-blue-grey-400" style="font-size:14px;">
+					<h4 class="mb-1 font-normal"><a href="<?php echo $url;?>" target="_blank"><?php the_title(); ?><a></h4>
+					<p class="mb-3 mb-sm-0 font-normal mdc-text-blue-grey-400" style="font-size:14px;">
 						<?php if ( !empty ( $custom_date ) ) { ?><?php echo $custom_date;?><?php } else { ?><?php echo date('M j', $start_date);?> - <?php echo date('M j', $end_date);?><?php } ?><?php if ( !empty ( $region ) ) echo ", $region ";?>						
-					</div>
+					</p>
 				<?php } else { ?>
-					<h4 class="mb-0 font-normal"><?php the_title(); ?></h4>
-					<div class="mdc-text-blue-grey-400" style="font-size:14px;">
+					<h4 class="mb-1 font-normal"><?php the_title(); ?></h4>
+					<p class="mb-3 mb-sm-0 font-normal mdc-text-blue-grey-400" style="font-size:14px;">
 						<?php if ( !empty ( $custom_date ) ) { ?><?php echo $custom_date;?><?php } else { ?><?php echo date('M j', $start_date);?> - <?php echo date('M j', $end_date);?><?php } ?><?php if ( !empty ( $region ) ) echo ", $region ";?>						
-					</div>
+					</p>
 				<?php } ?> 
-			</td>
-			<td class="align-middle text-right d-none d-sm-block"><?php if ( !empty ($url) ) { ?><a href="<?php echo $url;?>" target="_blank" class="btn btn-primary">Learn More</a> <?php } else { ?><span>Coming Soon</span><?php } ?></td>
-		</tr>
+			</div>
+			<div class="col-sm-3 match-height text-left text-sm-right">
+				<div class="vertical-align">
+					<?php if ( !empty ($url) ) { ?><a href="<?php echo $url;?>" target="_blank" class="btn btn-primary">Learn More</a> <?php } else { ?><span class="mdc-text-green">Coming Soon</span><?php } ?></td>
+				</div>
+			</div>
+		</div>
 
 		<?php
 
 		}
-		echo '</table></tbody>';
+		echo '</div>';
 		wp_reset_postdata();
 	} else { ?>
 		<div class="alert alert-primary" role="alert">
