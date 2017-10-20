@@ -202,3 +202,57 @@ function socrata_ipl_schedule ( $atts, $content = null ) {
 	return $content;
 }
 add_shortcode( 'ipl-schedule', 'socrata_ipl_schedule' );
+
+// Shortcode [ipl-schedule]
+function socrata_ipl_regions ( $atts, $content = null ) {
+  ob_start();
+
+	$today = strtotime('today UTC');
+	$args = array(
+		'post_type' => 'socrata_ipl_schedule',
+		'post_status' => 'publish',
+		'ignore_sticky_posts' => true,
+		'meta_key' => 'ipl_schedule_startdate',
+		'orderby' => 'meta_value_num',
+		'order' => 'asc',
+		'posts_per_page' => 100,
+		'meta_query' => array(
+			'relation' => 'AND',
+			array(
+			'key' => 'ipl_schedule_enddate',
+			'value' => $today,
+			'compare' => '>='
+			)
+		)
+	);
+	$myquery = new WP_Query($args);
+
+	// The Loop
+	if ( $myquery->have_posts() ) {
+		echo '<ul>';
+		while ( $myquery->have_posts() ) { $myquery->the_post();
+		$custom_date = rwmb_meta( 'ipl_schedule_custom_date' );
+		$start_date = rwmb_meta( 'ipl_schedule_startdate' );
+		$end_date = rwmb_meta( 'ipl_schedule_enddate' );
+		$region = rwmb_meta( 'ipl_schedule_region' );
+		?>
+
+		<li><strong><?php echo $region; ?></strong>, <?php if ( !empty ( $custom_date ) ) { ?><?php echo $custom_date;?><?php } else { ?><?php echo date('M j', $start_date);?> - <?php echo date('M j', $end_date);?><?php } ?></li>
+
+		<?php
+
+		}
+		echo '</ul>';
+		wp_reset_postdata();
+	} else { ?>
+		<div class="alert alert-primary" role="alert">
+			There are no scheduled in-persion events at this time.
+		</div>
+	<?php
+	}
+
+	$content = ob_get_contents();
+	ob_end_clean();
+	return $content;
+}
+add_shortcode( 'ipl-regions', 'socrata_ipl_regions' );
