@@ -13,7 +13,8 @@
     "iframe-resizer": "^3.5.14",
     "include-media": "^1.4.9",
     "slick-carousel": "^1.8.1",
-    "material-design-color-palette": "^1.1.0"
+    "material-design-color-palette": "^1.1.0",
+    "plotly.js": "^1.31.2"
   },
   "overrides": {
     "iframe-resizer": {
@@ -24,6 +25,9 @@
     },
     "matchHeight": {
       "main": "./dist/jquery.matchHeight-min.js"
+    },
+    "plotly.js": {
+      "main": "./dist/plotly-basic.min.js"
     }
   }
 }
