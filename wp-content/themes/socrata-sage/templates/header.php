@@ -4,6 +4,7 @@
     <li class="nav-item"><a href="/online-learning">Online Learning</a></li>
     <li class="nav-item"><a href="/in-person-learning">In-person Learning</a></li>
     <li class="nav-item"><a href="/private-classroom-training">Private Classroom Training</a></li>
+    <!--<li class="nav-item"><a href="/resources">Resources</a></li>-->
     <li class="nav-item"><a href="/contact">Contact Us</a></li>
   </ul>
 </nav>

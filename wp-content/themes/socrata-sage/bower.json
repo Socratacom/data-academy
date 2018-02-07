@@ -7,14 +7,13 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "bootstrap": "git://github.com/twbs/bootstrap.git#v4.0.0-beta",
-    "popper.js": "^1.12.3",
+    "popper.js": "^1.12.9",
     "matchHeight": "^0.7.2",
-    "iframe-resizer": "^3.5.14",
+    "iframe-resizer": "^3.5.16",
     "include-media": "^1.4.9",
     "slick-carousel": "^1.8.1",
     "material-design-color-palette": "^1.1.0",
-    "plotly.js": "^1.31.2"
+    "plotly.js": "^1.33.1"
   },
   "overrides": {
     "iframe-resizer": {

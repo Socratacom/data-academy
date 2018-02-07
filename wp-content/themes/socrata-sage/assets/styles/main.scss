@@ -2,10 +2,10 @@
 
 // Automatically injected Bower dependencies via wiredep (never manually edit this block)
 // bower:scss
-@import "../../bower_components/bootstrap/scss/bootstrap.scss";
 @import "../../bower_components/include-media/dist/_include-media.scss";
 // endbower
 
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
 @import "common/global";
 @import "common/material-design-color-palette";
 @import "common/icons";
@@ -13,6 +13,7 @@
 @import "components/comments";
 @import "components/forms";
 @import "components/grid";
+@import "components/card";
 @import "components/wp-classes";
 @import "layouts/header";
 @import "layouts/sidebar";

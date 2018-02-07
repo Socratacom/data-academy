@@ -1,8 +1,89 @@
+.btn {
+	cursor:pointer;
+	border-radius:2rem;
+	padding:.5rem 1.5rem;
+	font-weight:$font-semi-bold;
+	text-transform:uppercase;
+}
 .btn-primary {
-    background-color:$primary;
-    border-color:$primary;
+	background-color:$btn-primary;
+	border-color:$btn-primary;
 }
 .btn-primary:hover {
-    background-color:$primary-dark;
-    border-color:$primary-dark;
+	background-color:$btn-primary-dark;
+	border-color:$btn-primary-dark;
+}
+.btn-secondary {
+	background-color:$btn-secondary;
+	border-color:$btn-secondary;
+}
+.btn-secondary:hover {
+	background-color:$btn-secondary-dark;
+	border-color:$btn-secondary-dark;
+}
+.btn-success {
+	background-color:$btn-success;
+	border-color:$btn-success;
+}
+.btn-success:hover {
+	background-color:$btn-success-dark;
+	border-color:$btn-success-dark;
+}
+.btn-danger {
+	background-color:$btn-danger;
+	border-color:$btn-danger;
+}
+.btn-danger:hover {
+	background-color:$btn-danger-dark;
+	border-color:$btn-danger-dark;
+}
+.btn-warning {
+	background-color:$btn-warning;
+	border-color:$btn-warning;
+}
+.btn-warning:hover {
+	background-color:$btn-warning-dark;
+	border-color:$btn-warning-dark;
+}
+.btn-info {
+	background-color:$btn-info;
+	border-color:$btn-info;
+}
+.btn-info:hover {
+	background-color:$btn-info-dark;
+	border-color:$btn-info-dark;
+}
+.btn-light {
+	background-color:$btn-light;
+	border-color:$btn-light;
+}
+.btn-light:hover {
+	background-color:$btn-light-dark;
+	border-color:$btn-light-dark;
+}
+.btn-dark {
+	background-color:$btn-dark;
+	border-color:$btn-dark;
+}
+.btn-dark:hover {
+	background-color:$btn-dark-dark;
+	border-color:$btn-dark-dark;
+}
+.btn-link {
+	color:$mdc-blue-500 !important;
+}
+.btn-link:hover {
+	color:$mdc-blue-600 !important;
+}
+.btn-primary, .btn-warning, .btn-secondary, .btn-success, .btn-danger, .btn-dark, .button-info {
+	color:$white !important;
+}
+.btn-light {
+	color:$mdc-blue-500 !important;
+}
+.btn-outline-light {
+	border-width:2px;
+}
+.btn-outline-light:hover {
+	background-color:rgba($white,.25);
 }

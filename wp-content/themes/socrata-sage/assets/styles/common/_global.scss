@@ -95,6 +95,10 @@ html, body, [canvas=container], [off-canvas] {
 .font-semi-bold {font-weight:$font-semi-bold;}
 .font-bold {font-weight:$font-bold;}
 
+.sixteen-nine {
+  @include aspect-ratio(16, 9);
+}
+
 .vertical-align {
 	position: relative; 
 	top: 50%; 
