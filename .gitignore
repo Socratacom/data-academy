@@ -30,6 +30,7 @@ wp-content/plugins/*
 !wp-content/plugins/socrata-in-person-learning/
 !wp-content/plugins/socrata-online-learning/
 !wp-content/plugins/socrata-resources/
+!wp-content/plugins/socrata-dashboard/
 
 # Ignore everything in the "themes" directory, except the themes you specify
 wp-content/themes/*
