@@ -12,6 +12,13 @@
 			padding:.5rem 1.5rem .5rem 0;
 		}
 	}
+	.stats li {
+		border-bottom:$mdc-blue-grey-50 solid 1px;
+	}
+	.stats li:last-child {
+		border:none;
+		margin:0;
+	}
 }
 .card:hover {
 	box-shadow: 0 5px 15px rgba($mdc-blue-grey-500, .3);
