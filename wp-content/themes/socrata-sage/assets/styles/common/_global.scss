@@ -163,6 +163,9 @@ ul.checkmark-list {
     p, li, .lead {      
         font-size:14px;
     }
+    .display-1 {
+    	font-size:4rem;
+    }
     .lead, p, li {
         font-weight:$font-light;
         line-height: 1.5em;
@@ -352,7 +355,7 @@ ul.checkmark-list {
     }
     p, li {     
         font-size:16px;
-    }    
+    }
     .section-padding {
         padding:80px 0;
     }
@@ -374,6 +377,9 @@ ul.checkmark-list {
     }
     h3 {
         font-size: 30px;
+    }
+    .display-1 {
+    	font-size:6rem;
     }
     .lead {
         font-size: 20px;

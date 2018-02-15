@@ -149,27 +149,30 @@ function certificates_meta_values( $key = 'stats_certificates', $type = 'course_
 $reginput = implode( ',', registered_meta_values( 'stats_registered' ));
 $regres = explode(',',$reginput);
 $regresult = array_sum($regres);
+$registration_number = number_format($regresult);
 
 $compinput = implode( ',', completed_meta_values( 'stats_completed' ));
 $compres = explode(',',$compinput);
-$compresult = array_sum($compres); 
+$compresult = array_sum($compres);
+$complete_number = number_format($compresult);
 
 $certsinput = implode( ',', certificates_meta_values( 'stats_certificates' ));
 $certsres = explode(',',$certsinput);
-$certsresult = array_sum($certsres); 
+$certsresult = array_sum($certsres);
+$certificate_number = number_format($certsresult);
 
 { ?>
 
-	<div class="col-sm-4 text-center">
-		<h1 class="display-1 mdc-text-blue-500 mb-0"><?php echo $regresult;?></h1>
+	<div class="col-sm-4 mb-3 text-center">
+		<h1 class="display-1 mdc-text-blue-500 mb-0"><?php echo $registration_number;?></h1>
 		<p>Total Students Registered</p>
 	</div>
-	<div class="col-sm-4 text-center">
-		<h1 class="display-1 mdc-text-teal-500 mb-0"><?php echo $compresult;?></h1>
+	<div class="col-sm-4 mb-3 text-center">
+		<h1 class="display-1 mdc-text-teal-500 mb-0"><?php echo $complete_number;?></h1>
 		<p>Total Courses Taken</p>
 	</div>
-	<div class="col-sm-4 text-center">
-		<h1 class="display-1 mdc-text-green-500 mb-0"><?php echo $certsresult;?></h1>
+	<div class="col-sm-4 mb-3 text-center">
+		<h1 class="display-1 mdc-text-green-500 mb-0"><?php echo $certificate_number;?></h1>
 		<p>Total Certificates Issued</p>
 	</div>
 	
@@ -205,24 +208,25 @@ $args = array(
 $myquery = new WP_Query($args);
 // The Loop
 while ( $myquery->have_posts() ) { $myquery->the_post(); 
-$registered = rwmb_meta( 'stats_registered' );
-$completed = rwmb_meta( 'stats_completed' );
-$certificates = rwmb_meta( 'stats_certificates' );
+$registered_num = rwmb_meta( 'stats_registered' );
+$registered = number_format($registered_num);
+$completed_num = rwmb_meta( 'stats_completed' );
+$completed = number_format($completed_num);
+$certificates_num = rwmb_meta( 'stats_certificates' );
+$certificates = number_format($certificates_num);
+$logo = rwmb_meta( 'stats_logo', 'size=small' );
 $id = get_the_ID();
 ?>
 
 
-<div class="col-sm-4">
+<div class="col-sm-6 col-md-4">
 	<div class="card mb-4 match-height">
-		<div class="card-header">
-    	<h6 class="mb-0"><?php the_title();?></h6>
-  	</div>
-		<div id="<?php echo $id; ?>"></div>
+		<div id="<?php echo $id; ?>" class="d-none d-sm-block"></div>
 		<script>
 		var pieDiv = document.getElementById("<?php echo $id; ?>");
 		var traceA = {
 		  type: "pie",
-		  values: [<?php echo $registered;?>, <?php echo $completed;?>, <?php echo $certificates;?>],
+		  values: [<?php echo $registered_num;?>, <?php echo $completed_num;?>, <?php echo $certificates_num;?>],
 		  labels: ['Registered Students', 'Courses Completed', 'Certificates Issued'],
 		  hole: 0.8,
 		  direction: 'clockwise',
@@ -263,6 +267,10 @@ $id = get_the_ID();
 		Plotly.plot(pieDiv, data, layout, {displayModeBar: false});
 		</script>
 		<div class="card-body">
+			<div class="d-flex align-items-center pb-3 mb-3" style="border-bottom:#eceff1 solid 1px;">
+				<?php if ( !empty ( $logo ) ) { ?><div class="mr-2" style="background-image:url(<?php foreach ( $logo as $image ) { echo $image['url']; } ?>); background-repeat: no-repeat; background-position: center; background-size: contain; height:50px; width:50px;"></div> <?php } ?>
+			<h6 class="mb-0"><?php the_title();?></h6>
+		</div>
 			<ul class="list-group mb-0 stats">
 				<li class="d-flex justify-content-between align-items-center"><span class="text-bold mdc-text-blue-500"><?php echo $registered; ?></span> <span>Students Registered</span></li>
 				<li class="d-flex justify-content-between align-items-center"><span class="text-bold mdc-text-teal-500"><?php echo $completed; ?></span> <span>Courses Completed</span></li>

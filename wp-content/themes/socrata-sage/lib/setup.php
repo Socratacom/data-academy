@@ -36,7 +36,8 @@ function setup() {
 	// http://codex.wordpress.org/Function_Reference/add_image_size
 	add_theme_support('post-thumbnails');
 	set_post_thumbnail_size( 100, 100, array( 'center', 'center')  );
-	add_image_size( 'square', 200, 200, array( 'center', 'center'));  
+	add_image_size( 'square', 200, 200, array( 'center', 'center'));
+	add_image_size( 'small', 9999, 80 );
 
 	// Enable post formats
 	// http://codex.wordpress.org/Post_Formats
@@ -101,7 +102,7 @@ function display_sidebar() {
  * Theme assets
  */
 function assets() {
-	wp_enqueue_style('sage/css', Assets\asset_path('styles/main.css'), '', '1.7.17');  
+	wp_enqueue_style('sage/css', Assets\asset_path('styles/main.css'), '', '1.7.18');  
 	wp_register_style( 'google-fonts', 'https://fonts.googleapis.com/css?family=Open+Sans:400,700,300,600', false, null);
 	wp_enqueue_style('google-fonts');
 
